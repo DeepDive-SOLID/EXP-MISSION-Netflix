@@ -85,3 +85,42 @@
   color: white;
   font-size: 14px;
 }
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav__mobileMenu {
+  display: none;
+  color: white;
+  cursor: pointer;
+}
+
+.mobileMenu {
+  position: absolute;
+  top: 35px;
+  left: 80px;
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid white;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+  min-width: 200px;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .nav__menu {
+    display: none;
+  }
+
+  .nav__mobileMenu {
+    display: block;
+  }
+}

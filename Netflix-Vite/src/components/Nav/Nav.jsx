@@ -9,8 +9,18 @@ import { useDebounce } from "../../hooks/useDebounce";
 export default function Nav() {
   const [showSearch, setShowSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const debouncedSearchTerm = useDebounce(searchTerm, 500); // ✅ debounce 적용
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // 데스크탑에서는 메뉴 보이게, 모바일에서는 자동 닫기
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1024) setIsMobileMenuOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (debouncedSearchTerm.trim()) {
@@ -20,22 +30,43 @@ export default function Nav() {
 
   return (
     <div className={styles.nav}>
-      <img
-        alt="Logo"
-        src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-        className={styles.nav__logo}
-        onClick={() => window.location.reload()}
-      />
+      <div className={styles.navLeft}>
+        <img
+          alt="Logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+          className={styles.nav__logo}
+          onClick={() => navigate("/")}
+        />
 
-      <ul className={styles.nav__menu}>
-        <li>홈</li>
-        <li>시리즈</li>
-        <li>영화</li>
-        <li>게임</li>
-        <li>New! 요즘 대세 콘텐츠</li>
-        <li>내가 찜한 리스트</li>
-        <li>언어별로 찾아보기</li>
-      </ul>
+        <ul className={styles.nav__menu}>
+          <li onClick={() => navigate("/")}>홈</li>
+          <li>시리즈</li>
+          <li>영화</li>
+          <li>게임</li>
+          <li>New! 요즘 대세 콘텐츠</li>
+          <li>내가 찜한 리스트</li>
+          <li>언어별로 찾아보기</li>
+        </ul>
+
+        <div
+          className={styles.nav__mobileMenu}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          메뉴 ▼
+        </div>
+
+        {isMobileMenuOpen && (
+          <ul className={styles.mobileMenu}>
+            <li>홈</li>
+            <li>시리즈</li>
+            <li>영화</li>
+            <li>게임</li>
+            <li>New! 요즘 대세 콘텐츠</li>
+            <li>내가 찜한 리스트</li>
+            <li>언어별로 찾아보기</li>
+          </ul>
+        )}
+      </div>
 
       <div className={styles.nav__icons}>
         <img
