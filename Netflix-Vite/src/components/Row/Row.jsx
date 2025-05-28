@@ -36,7 +36,7 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
 
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        loop={true}
+        loop={false}
         navigation
         pagination={{ clickable: true }}
         breakpoints={{
@@ -47,19 +47,24 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
         }}
       >
         <div id={id} className={styles.row__posters}>
-          {movies.map((movie) => (
+          {(isLargeRow ? movies.slice(0, 10) : movies).map((movie, index) => (
             <SwiperSlide key={movie.id}>
-              <img
-                onClick={() => handleClick(movie)}
-                className={`${styles.row__poster} ${
-                  isLargeRow ? styles.row__posterLarge : ""
-                }`}
-                src={`https://image.tmdb.org/t/p/original/${
-                  isLargeRow ? movie.poster_path : movie.backdrop_path
-                }`}
-                loading="lazy"
-                alt={movie.name}
-              />
+              <div className={styles.posterWrapper}>
+                {isLargeRow && (
+                  <span className={styles.rankNumber}>{index + 1}</span>
+                )}
+                <img
+                  onClick={() => handleClick(movie)}
+                  className={`${styles.row__poster} ${
+                    isLargeRow ? styles.row__posterLarge : ""
+                  }`}
+                  src={`https://image.tmdb.org/t/p/original/${
+                    isLargeRow ? movie.poster_path : movie.backdrop_path
+                  }`}
+                  loading="lazy"
+                  alt={movie.name}
+                />
+              </div>
             </SwiperSlide>
           ))}
         </div>

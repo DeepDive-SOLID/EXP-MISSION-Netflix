@@ -10,23 +10,59 @@ export default function Home() {
       <Banner />
 
       <Row
-        title="NETFLIX ORIGINALS"
+        title="꼭 챙겨보세요! 회원님을 위한 콘텐츠"
         id="NO"
         fetchUrl={requests.fetchNetflixOriginals}
+      />
+
+      <Row
+        title="오늘 대한민국의 TOP 10 시리즈"
+        id="TOP_TV_KR"
+        fetchUrl={requests.fetchKoreanTopTV}
         isLargeRow
       />
 
-      <Row title="Trending Now" id="TN" fetchUrl={requests.fetchTrending} />
-      <Row title="Top Rated" id="TR" fetchUrl={requests.fetchTopRated} />
       <Row
-        title="Action Movies"
-        id="AM"
-        fetchUrl={requests.fetchActionMovies}
+        title="오직 넷플릭스에서"
+        id="ONLY_NETFLIX"
+        fetchUrl={requests.fetchNetflixTopRatedMovies}
       />
+
       <Row
-        title="Comedy Movies"
-        id="CM"
-        fetchUrl={requests.fetchComedyMovies}
+        title="오늘 대한민국의 TOP 10 영화"
+        id="TOP_MOVIE_KR"
+        fetchUrl={requests.fetchKoreanTopMovies}
+        isLargeRow
+      />
+
+      <Row
+        title="몰아보기 추천 해외 시리즈"
+        id="BINGE_TV"
+        fetchUrl={requests.fetchRecommendedBingeTV}
+      />
+
+      <Row
+        title="넷플릭스에 새로 올라온 콘텐츠"
+        id="NOW_PLAYING"
+        fetchUrl={requests.fetchNowPlaying}
+      />
+
+      <Row
+        title="미국 드라마"
+        id="AMERICAN_TV"
+        fetchUrl={requests.fetchAmericanTV}
+      />
+
+      <Row
+        title="애니메이션"
+        id="ANIMATION_TV"
+        fetchUrl={requests.fetchAnimationTV}
+      />
+
+      <Row
+        title="호러 영화"
+        id="HORROR_MOVIES"
+        fetchUrl={requests.fetchHorrorMovies}
       />
     </div>
   );
