@@ -15,9 +15,10 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [movieSelected, setMovieSelection] = useState({});
 
-  const handleClick = (movie) => {
+  const handleClick = async (movie) => {
+    const detailData = await fetchMovieDetail(movie);
+    setMovieSelection(detailData);
     setModalOpen(true);
-    setMovieSelection(movie);
   };
 
   useEffect(() => {
@@ -28,6 +29,14 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
     const request = await axios.get(fetchUrl);
     setMovies(request.data.results);
     return request;
+  };
+
+  const fetchMovieDetail = async (movie) => {
+    const type = movie.first_air_date ? "tv" : "movie";
+    const response = await axios.get(`/${type}/${movie.id}`, {
+      params: { append_to_response: "credits" },
+    });
+    return response.data;
   };
 
   return (
@@ -71,7 +80,7 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
       </Swiper>
 
       {modalOpen && (
-        <MovieModal {...movieSelected} setModalOpen={setModalOpen} />
+        <MovieModal movie={movieSelected} setModalOpen={setModalOpen} />
       )}
     </section>
   );

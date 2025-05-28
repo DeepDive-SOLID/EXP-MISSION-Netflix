@@ -1,98 +1,188 @@
-.modal {
-  position: relative;
-  max-width: 800px;
-  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
-    0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
-  background: #111;
-  overflow: hidden;
-  border-radius: 8px;
-  transition: all 400ms ease-in-out 2s;
-  animation: fadeIn 400ms;
-}
-.modal__poster-img {
-  width: 100%;
-  height: auto;
-}
-.modal__content {
-  padding: 40px;
-  color: white;
-}
-.modal__title {
-  padding: 0;
-  font-size: 40px;
-  margin: 16px 0;
-}
-.modal__details {
-  font-weight: 600;
-  font-size: 18px;
-}
-.modal__overview {
-  font-size: 20px;
-  line-height: 1.5;
-}
-.modal__user-perc {
-  color: #46d369;
-}
-.modal::-webkit-scrollbar {
-  display: none;
-  visibility: hidden;
-}
+/* MovieModal.module.css */
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.modal {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.wrapper-modal {
-  position: fixed;
-  inset: 0px;
-  background-color: rgb(0 0 0 / 71%);
-  -webkit-tap-highlight-color: transparent;
-  display: flex;
-  justify-content: center;
-}
 .presentation {
   z-index: 1200;
   position: absolute;
 }
-.modal-close {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  cursor: pointer;
+
+.wrapperModal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
+}
+
+.modal {
+  background-color: #181818;
   color: white;
+  width: 800px;
+  max-width: 90vw;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  animation: fadeIn 300ms ease-in-out;
 }
-@media screen and (max-height: 768px) {
-  .wrapper-modal {
-    align-items: unset;
-    padding-top: 2rem;
-  }
-  .modal {
-    overflow-y: scroll;
-  }
+
+.modalClose {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-@media screen and (max-width: 768px) {
-  .modal__overview {
-    font-size: 16px;
-  }
-  .modal__details {
-    font-size: 16px;
-  }
-  .wrapper-modal {
-    padding: 0;
-  }
-  .modal {
-    overflow-y: scroll !important;
-  }
+
+.modalPosterImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
+
+.modalContent {
+  padding: 24px;
+  font-family: sans-serif;
+}
+
+.modalTitle {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.playButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: black;
+  border: none;
+  padding: 10px 18px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.playButton:hover {
+  background: #e6e6e6;
+}
+.playIcon {
+  font-size: 18px;
+}
+
+.iconButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+.iconButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.iconImg {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.meta {
+  font-size: 14px;
+  color: #aaa;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.badge {
+  border: 1px solid #aaa;
+  padding: 2px 4px;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.age {
+  background-color: #333;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.top10 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.topBadge {
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-right: 6px;
+}
+
+.description {
+  font-size: 15px;
+  color: #ccc;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.additional p {
+  font-size: 13px;
+  color: #999;
+  margin: 4px 0;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.5);
+    transform: scale(0.95);
   }
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modalContent {
+    padding: 16px;
+  }
+  .modalTitle {
+    font-size: 24px;
+  }
+  .description {
+    font-size: 14px;
+  }
+  .meta {
+    flex-wrap: wrap;
   }
 }
