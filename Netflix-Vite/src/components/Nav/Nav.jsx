@@ -2,10 +2,21 @@ import searchIcon from "../../assets/search.svg";
 import alarmIcon from "../../assets/alarm.svg";
 import userIcon from "../../assets/user.png";
 import styles from "./Nav.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export default function Nav() {
   const [showSearch, setShowSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 500); // ✅ debounce 적용
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (debouncedSearchTerm.trim()) {
+      navigate(`/search?q=${encodeURIComponent(debouncedSearchTerm.trim())}`);
+    }
+  }, [debouncedSearchTerm, navigate]);
 
   return (
     <div className={styles.nav}>
@@ -41,9 +52,12 @@ export default function Nav() {
               type="text"
               className={styles.searchInput}
               placeholder="제목, 사람, 장르"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
         )}
+
         <span>키즈</span>
         <img src={alarmIcon} alt="Alarm Icon" className={styles.nav__icon} />
         <img src={userIcon} alt="User Icon" className={styles.nav__icon} />
