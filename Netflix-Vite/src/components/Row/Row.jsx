@@ -56,26 +56,31 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
         }}
       >
         <div id={id} className={styles.row__posters}>
-          {(isLargeRow ? movies.slice(0, 10) : movies).map((movie, index) => (
-            <SwiperSlide key={movie.id}>
-              <div className={styles.posterWrapper}>
-                {isLargeRow && (
-                  <span className={styles.rankNumber}>{index + 1}</span>
-                )}
-                <img
-                  onClick={() => handleClick(movie)}
-                  className={`${styles.row__poster} ${
-                    isLargeRow ? styles.row__posterLarge : ""
-                  }`}
-                  src={`https://image.tmdb.org/t/p/original/${
-                    isLargeRow ? movie.poster_path : movie.backdrop_path
-                  }`}
-                  loading="lazy"
-                  alt={movie.name}
-                />
-              </div>
-            </SwiperSlide>
-          ))}
+          {(isLargeRow ? movies.slice(0, 10) : movies).map((movie, index) => {
+            const imagePath = isLargeRow
+              ? movie.poster_path
+              : movie.backdrop_path;
+            if (!imagePath) return null; // ❗ 이미지 없으면 렌더링하지 않음
+
+            return (
+              <SwiperSlide key={movie.id}>
+                <div className={styles.posterWrapper}>
+                  {isLargeRow && (
+                    <span className={styles.rankNumber}>{index + 1}</span>
+                  )}
+                  <img
+                    onClick={() => handleClick(movie)}
+                    className={`${styles.row__poster} ${
+                      isLargeRow ? styles.row__posterLarge : ""
+                    }`}
+                    src={`https://image.tmdb.org/t/p/original/${imagePath}`}
+                    loading="lazy"
+                    alt={movie.name}
+                  />
+                </div>
+              </SwiperSlide>
+            );
+          })}
         </div>
       </Swiper>
 
