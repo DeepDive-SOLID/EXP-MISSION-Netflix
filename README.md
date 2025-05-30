@@ -42,7 +42,7 @@ TMDB API를 활용하여 제작한 Netflix 클론 프로젝트입니다.
   </tr> 
   <tr>
   <td><img src="src/assets/images/image-2.png" /></td> 
-  <td></td>
+  <td><img src="src/assets/images/image-11.png" /></td>
   </tr>
 </table>
 
@@ -102,7 +102,8 @@ TMDB API를 활용하여 제작한 Netflix 클론 프로젝트입니다.
 │   ├── Banner/             # 메인 배너 컴포넌트
 │   ├── MovieModal/         # 영화 상세정보 모달
 │   ├── Nav/                # 상단 내비게이션 바
-│   └── Row/                # 슬라이더 UI
+│   ├── Row/                # 슬라이더 UI
+│   └── Footer/             # Footer UI
 │
 ├── hooks/
 │   ├── useDebounce.js      # 입력 디바운스 처리
