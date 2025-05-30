@@ -2,6 +2,7 @@ import Banner from "../../components/Banner/Banner.jsx";
 import Nav from "../../components/Nav/Nav.jsx";
 import requests from "../../api/requests.jsx";
 import Row from "../../components/Row/Row.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
 
 export default function Home() {
   return (
@@ -64,6 +65,8 @@ export default function Home() {
         id="HORROR_MOVIES"
         fetchUrl={requests.fetchHorrorMovies}
       />
+
+      <Footer />
     </div>
   );
 }
