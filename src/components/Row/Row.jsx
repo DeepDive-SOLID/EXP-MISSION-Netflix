@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../api/axios";
+import axios from "../../api/axios.jsx";
 import styles from "./Row.module.css";
 import MovieModal from "../MovieModal/MovieModal.jsx";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
