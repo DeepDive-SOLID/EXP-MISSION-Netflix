@@ -13,7 +13,6 @@ export default function Nav() {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // 데스크탑에서는 메뉴 보이게, 모바일에서는 자동 닫기
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 1024) setIsMobileMenuOpen(false);
@@ -35,7 +34,10 @@ export default function Nav() {
           alt="Logo"
           src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
           className={styles.nav__logo}
-          onClick={() => navigate("/")}
+          onClick={() => {
+            navigate("/");
+            window.location.reload();
+          }}
         />
 
         <ul className={styles.nav__menu}>

@@ -60,22 +60,31 @@ export default function Banner() {
     );
   } else {
     return (
-      <div className={styles.container}>
-        <div className={styles.homeContainer}>
-          <iframe
-            className={styles.iframe}
-            width="640"
-            height="360"
-            src={`https://www.youtube.com/embed/${movie.videos.results[0].key}
-            ?controls=0&autoplay=1&loop=1&mute=1&playlist=${movie.videos.results[0].key}`}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="autoplay; fullscreen"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        </div>
-      </div>
+      <>
+        {movie.videos?.results?.length > 0 ? (
+          <div className={styles.container}>
+            <div className={styles.homeContainer}>
+              <iframe
+                className={styles.iframe}
+                width="640"
+                height="360"
+                src={`https://www.youtube.com/embed/${movie.videos.results[0].key}?controls=0&autoplay=1&loop=1&mute=1&playlist=${movie.videos.results[0].key}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="autoplay; fullscreen"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.container}>
+            <div className={styles.homeContainer}>
+              <p>예고편이 존재하지 않습니다.</p>
+            </div>
+          </div>
+        )}
+      </>
     );
   }
 }
